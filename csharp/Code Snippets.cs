@@ -6,11 +6,11 @@ string selected = this.ComboBox.GetItemText(this.ComboBox.SelectedItem);
 using (SqlConnection myConnection = new SqlConnection(ConStr))
             {
                 string sqlQuery = "INSERT INTO [tableName] (param1,param2,param3...) VALUES(@var1,@var2,@var3...)";
-                using (SqlCommand queryName = new SqlCommand(queryName))
+                using (SqlCommand queryName = new SqlCommand(sqlQuery))
                 {
                     queryName.Connection = myConnection;
                     queryName.Parameters.Add("@param1", SqlDbType.NVarChar, 50).Value = var1;
-                    queryName.Parameters.Add("@param2", SqlDbType.NVarChar, int.MaxValue).Value = var2;
+                    queryName.Parameters.Add("@param2", SqlDbType.NVarChar).Value = var2; //Use SqlDbType.NVarChar when data type is NVarChar(MAX) in DB
                     queryName.Parameters.Add("@param3", SqlDbType.DateTime).Value = var3;
                     try
                     {
